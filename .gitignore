@@ -9,3 +9,4 @@ bin-*/
 src/build/
 src/libuiohook/
 *.log
+*.tgz
