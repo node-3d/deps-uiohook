@@ -10,18 +10,7 @@ This is a part of [Node3D](https://github.com/node-3d) project.
 npm install @node-3d/deps-uiohook
 ```
 
-## Binary Origin
 
-Release archives are built by this repository's public GitHub Actions workflows.
-
-Attestations: https://github.com/node-3d/deps-uiohook/attestations
-
-To verify a downloaded archive:
-
-```bash
-gh release download <tag> -R node-3d/deps-uiohook -p <platform>.gz
-gh attestation verify <platform>.gz -R node-3d/deps-uiohook
-```
 
 This dependency package distributes **libUIOHook**
 binaries and headers through **npm** for **Node.js** addons.
@@ -42,3 +31,16 @@ This software uses [libUIOHook](https://github.com/kwhat/libuiohook) under LGPL3
 A copy of the libUIOHook license is [included](LIBUIOHOOK_LGPL.md),
 and can also be found at the
 [official repository](https://github.com/kwhat/libuiohook/blob/1.2/COPYING.LESSER.md).
+
+## Binary Origin
+
+Release archives are built by this repository's public GitHub Actions workflows.
+
+Attestations: https://github.com/node-3d/deps-uiohook/attestations
+
+To verify a downloaded archive:
+
+```bash
+gh release download <tag> -R node-3d/deps-uiohook -p <platform>.gz
+gh attestation verify <platform>.gz -R node-3d/deps-uiohook
+```
