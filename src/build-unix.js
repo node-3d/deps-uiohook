@@ -21,7 +21,7 @@ const fail = (error) => {
 
 const updateSystem = async () => {
 	try {
-		if (!['linux'].includes(platform)) {
+		if (!['linux', 'aarch64'].includes(platform)) {
 			return;
 		}
 		
