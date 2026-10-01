@@ -2,9 +2,10 @@
 #include <uiohook.h>
 
 napi_value probe(napi_env env, napi_callback_info) {
-	hook_set_logger_proc(nullptr);
+	int (*volatile run)() = &hook_run;
+	int (*volatile stop)() = &hook_stop;
 	napi_value result;
-	napi_get_boolean(env, true, &result);
+	napi_get_boolean(env, run != nullptr && stop != nullptr, &result);
 	return result;
 }
 
