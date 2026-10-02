@@ -131,6 +131,11 @@ jobs:
       - name: Build Packed Consumer Addon
         working-directory: ${{ steps.consumer.outputs.directory }}
         run: npm run build
+      - name: Run Packed Consumer Tests - Linux
+        if: startsWith(matrix.target, 'linux-')
+        working-directory: ${{ steps.consumer.outputs.directory }}
+        run: xvfb-run --auto-servernum npm test
       - name: Run Packed Consumer Tests
+        if: ${{ !startsWith(matrix.target, 'linux-') }}
         working-directory: ${{ steps.consumer.outputs.directory }}
         run: npm test
