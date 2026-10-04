@@ -140,6 +140,11 @@ jobs:
         with:
           node-version: 24.13.0
           architecture: ${{ matrix.node_arch }}
+      - name: Install Linux Build Prerequisites
+        if: startsWith(matrix.target, 'linux-')
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -qq libxtst-dev libxt-dev libxinerama-dev libx11-xcb-dev libxkbcommon-dev libxkbcommon-x11-dev
       - name: Install Packed Consumer Candidate
         id: consumer
         uses: node-3d/addon-tools/actions/consumer-install@1073c0a6403f6c20df2135f03950a568e865aa16
@@ -150,7 +155,12 @@ jobs:
       - name: Build Packed Consumer Addon
         working-directory: ${{ steps.consumer.outputs.directory }}
         run: npm run build
+      - name: Run Packed Consumer Tests - Linux
+        if: startsWith(matrix.target, 'linux-')
+        working-directory: ${{ steps.consumer.outputs.directory }}
+        run: xvfb-run --auto-servernum npm test
       - name: Run Packed Consumer Tests
+        if: ${{ !startsWith(matrix.target, 'linux-') }}
         working-directory: ${{ steps.consumer.outputs.directory }}
         run: npm test
 
