@@ -1,5 +1,10 @@
 export MACOSX_DEPLOYMENT_TARGET=13.5
 
+# libuiohook 1.2.2 overrides CMAKE_OSX_DEPLOYMENT_TARGET with 10.5.
+grep -Fq 'set(CMAKE_OSX_DEPLOYMENT_TARGET "10.5")' src/libuiohook/CMakeLists.txt || exit 1
+sed -i '' 's/set(CMAKE_OSX_DEPLOYMENT_TARGET "10.5")/set(CMAKE_OSX_DEPLOYMENT_TARGET "13.5")/' src/libuiohook/CMakeLists.txt || exit 1
+grep -Fq 'set(CMAKE_OSX_DEPLOYMENT_TARGET "13.5")' src/libuiohook/CMakeLists.txt || exit 1
+
 (
 	cd src/libuiohook/build
 	
